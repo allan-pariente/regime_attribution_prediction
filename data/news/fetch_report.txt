@@ -1,0 +1,84 @@
+============================================================
+RAPPORT DE COLLECTE — 03_news_fetch.py
+============================================================
+Changements de régime ciblés  : 72
+Articles collectés (total)     : 9299
+Sources API                    : {'guardian': 5163, 'finnhub': 4136}
+
+Couverture par changement de régime :
+----------------------------------------
+  ✅ 2016-04-28 : 125 articles
+  ✅ 2016-05-18 : 122 articles
+  ✅ 2016-06-13 : 127 articles
+  ✅ 2016-07-06 : 109 articles
+  ✅ 2016-07-25 : 113 articles
+  ✅ 2016-10-06 : 110 articles
+  ✅ 2016-11-02 : 126 articles
+  ✅ 2017-06-16 : 84 articles
+  ✅ 2017-07-07 : 80 articles
+  ✅ 2018-02-14 : 60 articles
+  ✅ 2018-03-20 : 70 articles
+  ✅ 2018-04-11 : 57 articles
+  ✅ 2018-05-02 : 52 articles
+  ✅ 2018-10-09 : 59 articles
+  ✅ 2018-11-19 : 74 articles
+  ✅ 2018-12-04 : 69 articles
+  ✅ 2019-01-07 : 66 articles
+  ✅ 2019-02-05 : 74 articles
+  ✅ 2019-05-08 : 68 articles
+  ✅ 2019-06-13 : 74 articles
+  ✅ 2019-08-05 : 87 articles
+  ✅ 2019-08-26 : 57 articles
+  ✅ 2019-09-16 : 74 articles
+  ✅ 2019-10-11 : 58 articles
+  ✅ 2020-02-25 : 71 articles
+  ✅ 2020-03-20 : 83 articles
+  ✅ 2020-08-14 : 61 articles
+  ✅ 2020-09-04 : 65 articles
+  ✅ 2020-09-28 : 62 articles
+  ✅ 2020-12-03 : 66 articles
+  ✅ 2021-02-01 : 94 articles
+  ✅ 2021-02-22 : 58 articles
+  ✅ 2021-03-18 : 63 articles
+  ✅ 2021-04-20 : 76 articles
+  ✅ 2021-04-27 : 64 articles
+  ✅ 2021-05-26 : 66 articles
+  ✅ 2021-09-15 : 89 articles
+  ✅ 2021-10-18 : 66 articles
+  ✅ 2021-11-24 : 100 articles
+  ✅ 2021-12-27 : 58 articles
+  ✅ 2022-01-06 : 59 articles
+  ✅ 2022-03-17 : 101 articles
+  ✅ 2022-04-07 : 70 articles
+  ✅ 2022-05-26 : 104 articles
+  ✅ 2022-06-10 : 95 articles
+  ✅ 2022-06-30 : 70 articles
+  ✅ 2022-08-24 : 98 articles
+  ✅ 2022-11-01 : 97 articles
+  ✅ 2022-12-09 : 92 articles
+  ✅ 2023-01-05 : 71 articles
+  ✅ 2023-02-22 : 81 articles
+  ✅ 2023-03-22 : 87 articles
+  ✅ 2023-04-20 : 78 articles
+  ✅ 2023-05-03 : 89 articles
+  ✅ 2023-08-01 : 75 articles
+  ✅ 2023-11-02 : 98 articles
+  ✅ 2023-11-24 : 90 articles
+  ✅ 2024-04-08 : 82 articles
+  ✅ 2024-05-06 : 68 articles
+  ✅ 2024-05-14 : 83 articles
+  ✅ 2024-07-23 : 96 articles
+  ✅ 2024-08-14 : 92 articles
+  ✅ 2024-10-02 : 100 articles
+  ✅ 2024-11-12 : 128 articles
+  ✅ 2024-11-21 : 87 articles
+  ✅ 2024-12-23 : 87 articles
+  ✅ 2025-02-26 : 104 articles
+  ✅ 2025-04-04 : 774 articles
+  ✅ 2025-06-05 : 669 articles
+  ✅ 2025-10-13 : 721 articles
+  ✅ 2025-12-19 : 786 articles
+  ✅ 2026-01-29 : 830 articles
+
+Conseil : augmenter WINDOW_BEFORE_DAYS si couverture < 80%
+============================================================
