@@ -1,0 +1,4 @@
+30879444-61c6-4d54-8c19-7b12a6acb989
+
+$env:GUARDIAN_API_KEY = "30879444-61c6-4d54-8c19-7b12a6acb989"
+python src/03_news_fetch.py

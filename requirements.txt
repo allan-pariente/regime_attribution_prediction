@@ -1,0 +1,37 @@
+# ── Données financières ───────────────────────────────────────────────────────
+# Source 1 (principale) : Stooq via pandas-datareader — gratuit, sans clé API
+pandas-datareader==0.10.0
+# Source 2 (fallback)   : yfinance
+yfinance>=0.2.36
+# Source 3 (fallback)   : Alpha Vantage — clé gratuite sur alphavantage.co
+# (utilisé via requests, pas de package dédié nécessaire)
+pandas>=2.0
+numpy>=1.24
+
+# ── API et réseau ─────────────────────────────────────────────────────────────
+requests>=2.31
+finnhub-python>=2.4
+
+# ── NLP et embeddings ─────────────────────────────────────────────────────────
+transformers>=4.40
+torch>=2.0
+sentence-transformers>=2.7
+
+# ── Machine Learning ──────────────────────────────────────────────────────────
+scikit-learn>=1.4
+xgboost>=2.0
+shap>=0.45
+
+# ── Causal inference ──────────────────────────────────────────────────────────
+statsmodels>=0.14
+dowhy>=0.11
+
+# ── Visualisation ─────────────────────────────────────────────────────────────
+matplotlib>=3.8
+seaborn>=0.13
+plotly>=5.20
+
+# ── Notebook ──────────────────────────────────────────────────────────────────
+jupyter>=1.0
+nbformat>=5.9
+ipykernel>=6.0
