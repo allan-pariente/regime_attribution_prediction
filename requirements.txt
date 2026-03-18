@@ -1,37 +1,54 @@
-# ── Données financières ───────────────────────────────────────────────────────
-# Source 1 (principale) : Stooq via pandas-datareader — gratuit, sans clé API
-pandas-datareader==0.10.0
-# Source 2 (fallback)   : yfinance
-yfinance>=0.2.36
-# Source 3 (fallback)   : Alpha Vantage — clé gratuite sur alphavantage.co
-# (utilisé via requests, pas de package dédié nécessaire)
+# ══════════════════════════════════════════════════════════════════════════════
+# Financial Regime Attribution Engine — Requirements
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── DATA & CORE ────────────────────────────────────────────────────────────────
 pandas>=2.0
 numpy>=1.24
+scipy>=1.10          # For distance calculations (cosine, euclidean)
+python-dotenv>=1.0   # For API key management from .env
 
-# ── API et réseau ─────────────────────────────────────────────────────────────
+# ── FINANCIAL DATA ─────────────────────────────────────────────────────────────
+# Source 1 (primary)   : FRED (Federal Reserve Economic Data) — free, no API key
+pandas-datareader==0.10.0
+# Source 2 (fallback)  : Yahoo Finance
+yfinance>=0.2.36
+# Source 3 (fallback)  : Alpha Vantage (free API key available)
 requests>=2.31
-finnhub-python>=2.4
 
-# ── NLP et embeddings ─────────────────────────────────────────────────────────
+# ── APIs ───────────────────────────────────────────────────────────────────────
+# Finnhub (financial news & market data)
+finnhub-python>=2.4
+# Note: Guardian API uses requests (already listed above)
+
+# ── NLP & EMBEDDINGS ───────────────────────────────────────────────────────────
+# FinBERT for financial sentiment analysis
 transformers>=4.40
 torch>=2.0
+# Sentence Transformers for semantic embeddings
 sentence-transformers>=2.7
 
-# ── Machine Learning ──────────────────────────────────────────────────────────
+# ── MACHINE LEARNING & EXPLAINABILITY ──────────────────────────────────────────
+# Core ML
 scikit-learn>=1.4
-xgboost>=2.0
+joblib>=1.3          # For model serialization (save/load .pkl)
+# Explainability
 shap>=0.45
-
-# ── Causal inference ──────────────────────────────────────────────────────────
+# Causal inference
 statsmodels>=0.14
-dowhy>=0.11
+dowhy>=0.11          # Optional, for causal discovery
 
-# ── Visualisation ─────────────────────────────────────────────────────────────
+# ── VISUALIZATION ──────────────────────────────────────────────────────────────
 matplotlib>=3.8
 seaborn>=0.13
 plotly>=5.20
 
-# ── Notebook ──────────────────────────────────────────────────────────────────
+# ── UTILITIES & TOOLS ──────────────────────────────────────────────────────────
+tqdm>=4.65           # Progress bars
+pyyaml>=6.0          # Config file handling
+
+# ── JUPYTER & NOTEBOOKS ───────────────────────────────────────────────────────
 jupyter>=1.0
 nbformat>=5.9
 ipykernel>=6.0
+ipywidgets>=8.0
