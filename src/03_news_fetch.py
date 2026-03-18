@@ -24,8 +24,8 @@ from pathlib import Path
 
 # ─── Configuration ────────────────────────────────────────────────────────────
 
-FINNHUB_API_KEY      = os.getenv("FINNHUB_API_KEY", "d6s4gnhr01qrb5i8jpogd6s4gnhr01qrb5i8jpp0")
-GUARDIAN_API_KEY     = os.getenv("GUARDIAN_API_KEY", "30879444-61c6-4d54-8c19-7b12a6acb989")  # https://bonobo.capi.gutools.co.uk/register/developer
+FINNHUB_API_KEY      = os.getenv("FINNHUB_API_KEY", "your_finnhub_key")
+GUARDIAN_API_KEY     = os.getenv("GUARDIAN_API_KEY", "your_guardian_key")  # https://bonobo.capi.gutools.co.uk/register/developer
 
 DATA_DIR             = Path("data")
 MARKET_CSV           = DATA_DIR / "market" / "nasdaq_10y.csv"
