@@ -1,0 +1,110 @@
+{
+  "prediction_date": "2026-03-18",
+  "run_at": "2026-03-18 19:24:24",
+  "window": "J-5 a J",
+  "articles_analyses": 183,
+  "prediction": {
+    "probabilite_changement": 0.02,
+    "alerte": "FAIBLE",
+    "regime_probable": "stable (pas de changement prevu)",
+    "seuil_forte": 0.35,
+    "seuil_moderee": 0.2
+  },
+  "contexte_marche": {
+    "returns": 0.0047,
+    "returns_pct": 0.4709,
+    "volatility_20d": 0.1659,
+    "vix": 22.37,
+    "rsi_14": 45.6862,
+    "macd": -155.2973,
+    "macd_signal": -132.1312,
+    "macd_hist": -23.1661,
+    "drawdown": -0.0578,
+    "drawdown_pct": -5.7756
+  },
+  "features_textuelles": {
+    "sentiment_mean": -0.2778,
+    "sentiment_std": 0.5002,
+    "sentiment_min": -0.9618,
+    "pct_negative": 0.4481,
+    "news_count": 183,
+    "information_shift": 0.1325
+  },
+  "top_news": [
+    {
+      "date": "2026-03-16",
+      "headline": "Car park firm NCP falls into administration, putting nearly 700 jobs at risk",
+      "sentiment": -0.9618,
+      "sentiment_label": "negative",
+      "source": "guardian",
+      "topic": 0,
+      "topic_name": "Google / Tech / Openai"
+    },
+    {
+      "date": "2026-03-17",
+      "headline": "Australian households fear double whammy of rate hikes and higher petrol prices will lead to recession",
+      "sentiment": -0.9609,
+      "sentiment_label": "negative",
+      "source": "guardian",
+      "topic": 7,
+      "topic_name": "Nvidia / Stock / Nvda"
+    },
+    {
+      "date": "2026-03-14",
+      "headline": "UK pensions: lifetime Isa shake-up raises fears for self-employed",
+      "sentiment": -0.9596,
+      "sentiment_label": "negative",
+      "source": "guardian",
+      "topic": 7,
+      "topic_name": "Nvidia / Stock / Nvda"
+    },
+    {
+      "date": "2026-03-17",
+      "headline": "Bentley to cut hundreds of UK jobs amid ‘challenging global market environment’",
+      "sentiment": -0.9571,
+      "sentiment_label": "negative",
+      "source": "guardian",
+      "topic": 7,
+      "topic_name": "Nvidia / Stock / Nvda"
+    },
+    {
+      "date": "2026-03-18",
+      "headline": "Vietnam faces falling oil production as Iran war disrupts global supplies - Reuters",
+      "sentiment": -0.9558,
+      "sentiment_label": "negative",
+      "source": "Reuters",
+      "topic": 4,
+      "topic_name": "Interest / Bank / Rates"
+    }
+  ],
+  "topic_distribution": {
+    "Nvidia / Stock / Nvda (t7)": {
+      "count": 34,
+      "pct": 18.6,
+      "topic_id": 7,
+      "topic_name": "Nvidia / Stock / Nvda"
+    },
+    "Interest / Bank / Rates (t4)": {
+      "count": 31,
+      "pct": 16.9,
+      "topic_id": 4,
+      "topic_name": "Interest / Bank / Rates"
+    },
+    "Stock / Ftse / Shares (t3)": {
+      "count": 27,
+      "pct": 14.8,
+      "topic_id": 3,
+      "topic_name": "Stock / Ftse / Shares"
+    }
+  },
+  "topic_names_mapping": {
+    "0": "Google / Tech / Openai",
+    "1": "Trump / Clinton / Donald",
+    "2": "Brexit / Ftse / British",
+    "3": "Stock / Ftse / Shares",
+    "4": "Interest / Bank / Rates",
+    "5": "Orlando / Green / After",
+    "6": "Apple / Sales / Amazon",
+    "7": "Nvidia / Stock / Nvda"
+  }
+}

@@ -4,7 +4,7 @@ A comprehensive machine learning pipeline that detects market regimes in NASDAQ 
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 1. [Project Overview](#project-overview)
 2. [Key Features](#key-features)
@@ -23,7 +23,7 @@ A comprehensive machine learning pipeline that detects market regimes in NASDAQ 
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 This project builds an **end-to-end machine learning pipeline** that:
 
@@ -33,7 +33,7 @@ This project builds an **end-to-end machine learning pipeline** that:
 4. **Performs sentiment analysis** using FinBERT to quantify news sentiment
 5. **Generates embeddings** using Sentence Transformers for semantic news representation
 6. **Analyzes causal relationships** via Granger causality testing between news sentiment and market regimes
-7. **Trains predictive models** (Random Forest, XGBoost) to forecast market regimes
+7. **Trains predictive models** (Random Forest) to forecast market regimes
 8. **Explains predictions** using SHAP values to attribute causality to specific news articles and themes
 9. **Generates attribution reports** linking regime changes to news narratives
 
@@ -41,10 +41,10 @@ This project builds an **end-to-end machine learning pipeline** that:
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 - **Multi-Source Data Integration**: Combines market data (FRED/Yahoo Finance), news APIs (Finnhub, Guardian, Google News), and alternative news sources
-- **Hidden Markov Models & Clustering**: Detects 5 distinct market regimes using KMeans with smoothing
+- **Clustering**: Detects 5 distinct market regimes using KMeans with smoothing
 - **Advanced NLP**: FinBERT sentiment analysis + Sentence Transformers for semantic embeddings
 - **Causal Inference**: Granger causality tests to validate news→market relationships
 - **Interpretability**: SHAP local explanations for individual regime change events
@@ -53,7 +53,7 @@ This project builds an **end-to-end machine learning pipeline** that:
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```
 Financial Regime Attribution Engine
@@ -88,7 +88,7 @@ Financial Regime Attribution Engine
 │   └── Output: data/processed/granger_results.csv
 │
 ├── STAGE 8: MODEL TRAINING & PREDICTION
-│   ├── 08_model.py                → Train RF/XGBoost, generate SHAP values
+│   ├── 08_model.py                → Train RF, generate SHAP values
 │   └── Output: data/models/random_forest.pkl, data/processed/shap_values.npy
 │
 └── STAGE 9: ATTRIBUTION & INTERPRETATION
@@ -98,7 +98,7 @@ Financial Regime Attribution Engine
 
 ---
 
-## 📦 Installation & Setup
+## Installation & Setup
 
 ### Prerequisites
 - Python 3.8+ (tested on 3.10, 3.11)
@@ -153,7 +153,7 @@ mkdir -p data/market data/news data/processed data_usable data/models
 
 ---
 
-## 🔄 Data Pipeline
+## Data Pipeline
 
 ### Input Data
 - **Market Data**: Automatically fetched from FRED (Federal Reserve Economic Data) and Yahoo Finance
@@ -229,7 +229,6 @@ mkdir -p data/market data/news data/processed data_usable data/models
 #### 8. **Model Training** (08_model.py)
 - **Models trained**:
   - Random Forest Classifier
-  - XGBoost Classifier
 - **Features**: sentiment, embeddings, technical indicators
 - **Target**: Next day regime label
 - **Validation**: Stratified cross-validation (k=5)
@@ -246,7 +245,7 @@ mkdir -p data/market data/news data/processed data_usable data/models
 
 ---
 
-## 🚀 Workflow & Execution
+## Workflow & Execution
 
 ### Option 1: Run Full Pipeline (Sequential)
 ```bash
@@ -280,7 +279,7 @@ parallel python src/{} ::: 02_regime_detect.py 04_sentiment.py 07_granger.py
 
 ---
 
-## 📚 Module Documentation
+## Module Documentation
 
 ### **01_market_data.py**
 **Purpose**: Fetch 10-year NASDAQ historical data
@@ -452,14 +451,12 @@ SIGNIFICANCE_LEVEL = 0.05
 **Key Functions**:
 - `preprocess_features()`: Normalize, handle missing values
 - `train_random_forest()`: Fit RF with 100 trees
-- `train_xgboost()`: Fit XGBoost with early stopping
 - `cross_validate()`: 5-fold stratified CV
 - `generate_shap_values()`: TreeExplainer for interpretability
 - `evaluate_model()`: Precision, Recall, F1, ROC-AUC metrics
 
 **Outputs**:
 - `data/models/random_forest.pkl` (trained Random Forest)
-- `data/models/xgboost.pkl` (trained XGBoost)
 - `data/processed/shap_values.npy` (SHAP matrix: n_samples × n_features)
 - `data/processed/model_results.csv` (metrics, feature importance)
 
@@ -472,7 +469,6 @@ SIGNIFICANCE_LEVEL = 0.05
 TEST_SIZE = 0.2
 CV_FOLDS = 5
 RANDOM_FOREST_N_ESTIMATORS = 100
-XGBOOST_MAX_DEPTH = 6
 ```
 
 ---
@@ -546,7 +542,6 @@ XGBOOST_MAX_DEPTH = 6
 | **granger_results.csv** | `data/processed/` | Granger causality test results |
 | **granger_report.txt** | `data/processed/` | Granger interpretation |
 | **random_forest.pkl** | `data/models/` | Trained Random Forest model |
-| **xgboost.pkl** | `data/models/` | Trained XGBoost model |
 | **shap_values.npy** | `data/processed/` | SHAP local explanations |
 | **model_results.csv** | `data/processed/` | Model metrics (accuracy, F1, ROC-AUC) |
 | **attribution_report.json** | `data/processed/` | Structured attribution data |
@@ -579,7 +574,7 @@ XGBOOST_MAX_DEPTH = 6
 
 ### 5. **Explainability: SHAP (SHapley Additive exPlanations)**
 - **Why**: Provides local explanations (why this specific prediction?)
-- **Method**: TreeExplainer for Random Forest/XGBoost efficiency
+- **Method**: TreeExplainer for Random Forest efficiency
 - **Output**: Feature importance per sample (not just global)
 
 ### 6. **No Look-Ahead Bias**
@@ -609,7 +604,6 @@ XGBOOST_MAX_DEPTH = 6
 
 **4. Model Performance**
 - Random Forest accuracy: 60-70%
-- XGBoost accuracy: 65-75% (typically better for this task)
 - ROC-AUC: 0.70-0.82 (indicates meaningful patterns)
 - Feature importance: Sentiment features typically top-5
 
@@ -650,8 +644,6 @@ COMPANY_TICKERS = ["QQQ", "AAPL", "MSFT", "NVDA", "AMZN"]
 TEST_SIZE = 0.2
 CV_FOLDS = 5
 RANDOM_FOREST_N_ESTIMATORS = 100
-XGBOOST_MAX_DEPTH = 6
-XGBOOST_N_ESTIMATORS = 200
 
 # GRANGER CAUSALITY
 MAX_LAG = 5                            # Test up to 5-day lags
@@ -667,7 +659,6 @@ SIGNIFICANCE_LEVEL = 0.05              # p-value threshold
 pandas>=2.0              # Data manipulation
 numpy>=1.24             # Numerical computing
 scikit-learn>=1.4       # ML models (Random Forest, KMeans)
-xgboost>=2.0            # XGBoost gradient boosting
 ```
 
 ### NLP & Embeddings
@@ -768,7 +759,7 @@ python -u 08_model.py 2>&1 | tee training.log
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 ### How to Extend the Pipeline
 
@@ -842,6 +833,6 @@ If you use this project, please cite:
 
 ---
 
-**Last Updated**: March 2024  
+**Last Updated**: March 2026
 **Version**: 1.0  
 **Maintainer**: [Allan Pariente]
