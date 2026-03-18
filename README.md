@@ -842,6 +842,6 @@ If you use this project, please cite:
 
 ---
 
-**Last Updated**: March 2024  
+**Last Updated**: March 2026
 **Version**: 1.0  
 **Maintainer**: [Allan Pariente]
