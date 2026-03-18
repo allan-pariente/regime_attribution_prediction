@@ -541,7 +541,7 @@ RANDOM_FOREST_N_ESTIMATORS = 100
 
 ---
 
-### **10_nostradamus.py** ⚡ LIVE PREDICTION
+### **10_nostradamus.py** LIVE PREDICTION
 **Purpose**: Real-time regime change prediction using latest market & news data
 
 **Key Functions**:
