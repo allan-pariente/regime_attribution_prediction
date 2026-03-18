@@ -48,7 +48,7 @@ This project builds an **end-to-end machine learning pipeline** that:
 - **Advanced NLP**: FinBERT sentiment analysis + Sentence Transformers for semantic embeddings
 - **Causal Inference**: Granger causality tests to validate news→market relationships
 - **Interpretability**: SHAP local explanations for individual regime change events
-- **Real-Time Prediction**: Live regime change detection using latest market & news data (10_nostradamus.py)
+- **Real-Time Prediction**: Live regime change detection using latest market & news data
 - **Intelligent Topic Naming**: Automatic generation of descriptive topic names from headline keywords
 - **Production-Ready**: Modular pipeline with error handling, logging, and checkpoint management
 - **Visualization**: Regime plots, SHAP summary plots, attribution dashboards
