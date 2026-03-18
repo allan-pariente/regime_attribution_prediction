@@ -818,7 +818,7 @@ If you use this project, please cite:
 ```bibtex
 @project{regime_attribution_2024,
   title={Financial Regime Attribution Engine},
-  author={[Your Name]},
+  author={[Allan Pariente]},
   institution={CentraleSupélec},
   year={2024}
 }
