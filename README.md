@@ -48,6 +48,8 @@ This project builds an **end-to-end machine learning pipeline** that:
 - **Advanced NLP**: FinBERT sentiment analysis + Sentence Transformers for semantic embeddings
 - **Causal Inference**: Granger causality tests to validate news→market relationships
 - **Interpretability**: SHAP local explanations for individual regime change events
+- **Real-Time Prediction**: Live regime change detection using latest market & news data (10_nostradamus.py)
+- **Intelligent Topic Naming**: Automatic generation of descriptive topic names from headline keywords
 - **Production-Ready**: Modular pipeline with error handling, logging, and checkpoint management
 - **Visualization**: Regime plots, SHAP summary plots, attribution dashboards
 
@@ -94,6 +96,10 @@ Financial Regime Attribution Engine
 └── STAGE 9: ATTRIBUTION & INTERPRETATION
     ├── 09_attribution.py          → SHAP local explanations + report generation
     └── Output: data/processed/attribution_report.json/.txt
+
+└── STAGE 10: REAL-TIME PREDICTION (Live Monitoring)
+    ├── 10_nostradamus.py          → Live predictions on latest market/news data
+    └── Output: data/live/prediction_YYYYMMDD.json/.txt
 ```
 
 ---
@@ -271,7 +277,16 @@ python src/02_regime_detect.py  # Run only regime detection
 python src/08_model.py          # Retrain model on existing data
 ```
 
-### Option 3: Parallel Execution (Advanced)
+### Option 3: Real-Time Prediction (Live)
+```bash
+# After running full pipeline once (to train models), run for live predictions
+python src/10_nostradamus.py    # ~30s: Predict regime change on latest market/news data
+
+# Schedule it to run daily (e.g., via cron after market close)
+# Generates: data/live/prediction_YYYYMMDD.json and .txt
+```
+
+### Option 4: Parallel Execution (Advanced)
 For independent steps (after initial run), use GNU Parallel or similar:
 ```bash
 parallel python src/{} ::: 02_regime_detect.py 04_sentiment.py 07_granger.py
@@ -526,6 +541,89 @@ RANDOM_FOREST_N_ESTIMATORS = 100
 
 ---
 
+### **10_nostradamus.py** ⚡ LIVE PREDICTION
+**Purpose**: Real-time regime change prediction using latest market & news data
+
+**Key Functions**:
+- `collect_news()`: Fetch latest news from Finnhub + Guardian (past 5 days)
+- `compute_sentiment()`: FinBERT sentiment scoring on live headlines
+- `compute_embeddings_and_topics()`: Encode headlines, assign to semantic topics using KMeans
+- `generate_topic_names()`: Create descriptive names for topics (e.g., "Federal / Policy / Rate")
+- `get_market_features()`: Download latest NASDAQ, VIX, volume from FRED/Yahoo Finance
+- `build_feature_vector()`: Assemble prediction input from market + news features
+- `predict()`: Run Random Forest to get regime change probability
+- `interpret_regime()`: Deduce likely regime based on market context
+- `build_report()`: Generate structured prediction report with top contributing news
+
+**Inputs**:
+- `data/models/random_forest.pkl` (trained Random Forest)
+- `data/processed/dataset_final.csv` (to extract feature names)
+- `data/processed/news_with_embeddings.csv` (historical for topic naming)
+- **APIs**: Finnhub, Guardian, FRED, Yahoo Finance
+
+**Outputs**:
+- `data/live/prediction_YYYYMMDD.json` (structured prediction)
+- `data/live/prediction_YYYYMMDD.txt` (human-readable report)
+
+**Key Improvements**:
+- **Descriptive Topic Names**: Automatically generates intuitive topic names (e.g., "Monetary Policy", "Technology", "Employment") based on keyword frequency in headlines
+- **No Look-Ahead Bias**: Uses only past/present data (WINDOW_AFTER_DAYS=0)
+- **Real-Time Deployment**: Can run on schedule (cron/scheduler) for continuous monitoring
+- **Top News Attribution**: Shows which specific articles influenced the prediction with sentiment scores
+
+**Example Output**:
+```
+=================================================================
+PREDICTION LIVE — 2026-03-18
+Genere le 2026-03-18 18:04:41
+=================================================================
+
+      Signal faible
+  Probabilite de changement : 2.0%
+  Regime probable            : stable (pas de changement prevu)
+  Seuils : forte=35%  moderee=20%
+
+-----------------------------------------------------------------
+CONTEXTE DE MARCHE
+-----------------------------------------------------------------
+  Rendement (dernier j) : 0.4709%
+  Volatilite 20j        : 0.1659
+  VIX                   : 22.37
+  RSI 14j               : 45.6862
+  Drawdown              : -5.7756%
+
+-----------------------------------------------------------------
+TOP 5 NEWS LES PLUS SIGNIFICATIVES
+-----------------------------------------------------------------
+1. [2026-03-16] [NEGATIVE -0.96] Monetary / Policy / Rate
+   Fed raises rates by 0.25% amid inflation concerns
+   Source : Finnhub
+
+2. [2026-03-17] [NEGATIVE -0.96] Technology / Stocks / Market
+   Tech stocks fall as interest rates climb
+   Source : guardian
+
+... (more articles)
+
+-----------------------------------------------------------------
+TOPICS DOMINANTS
+-----------------------------------------------------------------
+  Monetary / Policy / Rate      : ################# 35.2% (64 articles)
+  Technology / Stocks / Market  : ############ 25.3% (46 articles)
+  Employment / Jobs / Hiring    : ########## 18.1% (33 articles)
+```
+
+**Configurable Parameters**:
+```python
+WINDOW_DAYS    = 5                    # Lookback period for news
+N_CLUSTERS     = 8                    # Number of semantic topics
+PROBA_THRESHOLD_HIGH   = 0.35        # Strong alert threshold
+PROBA_THRESHOLD_MEDIUM = 0.20        # Moderate alert threshold
+BATCH_SIZE     = 32                   # For model inference
+```
+
+---
+
 ## 📊 Output Files
 
 | File | Location | Description |
@@ -546,6 +644,8 @@ RANDOM_FOREST_N_ESTIMATORS = 100
 | **model_results.csv** | `data/processed/` | Model metrics (accuracy, F1, ROC-AUC) |
 | **attribution_report.json** | `data/processed/` | Structured attribution data |
 | **attribution_report.txt** | `data/processed/` | Human-readable attribution |
+| **prediction_YYYYMMDD.json** | `data/live/` | Live prediction (structured) |
+| **prediction_YYYYMMDD.txt** | `data/live/` | Live prediction (human-readable) |
 
 ---
 
