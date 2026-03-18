@@ -816,7 +816,7 @@ For issues or questions, please:
 
 If you use this project, please cite:
 ```bibtex
-@project{regime_attribution_2024,
+@project{regime_attribution_2026,
   title={Financial Regime Attribution Engine},
   author={[Allan Pariente]},
   institution={CentraleSupélec},
