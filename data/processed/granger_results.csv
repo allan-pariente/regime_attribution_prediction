@@ -1,0 +1,14 @@
+section,cause,effect,best_lag,p_value,significant
+A,sentiment_mean,returns,1,0.094097,False
+A,sentiment_min,returns,1,0.018018,True
+A,pct_negative,returns,1,0.050741,False
+A,information_shift,returns,4,0.005239,True
+B,returns,sentiment_mean,2,0.356202,False
+B,returns,pct_negative,1,0.794658,False
+C,sentiment_mean,y,4,0.0,True
+C,sentiment_min,y,3,0.0,True
+C,pct_negative,y,5,0.0,True
+C,information_shift,y,1,0.410857,False
+D,returns,y,1,0.093418,False
+D,volatility_20d,y,2,0.00353,True
+D,vix,y,1,0.035801,True

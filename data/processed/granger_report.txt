@@ -1,0 +1,78 @@
+=================================================================
+RAPPORT - CAUSALITE DE GRANGER
+News-Driven Regime Attribution Pipeline
+=================================================================
+Periode    : 2016-04-15 -> 2026-03-13
+Obs.       : 2493
+Max lag    : 5 jours
+Alpha      : 0.05
+
+
+-----------------------------------------------------------------
+News -> Rendements  (le sentiment predit-il le marche ?)
+-----------------------------------------------------------------
+Resultats : 2/4 tests significatifs
+
+  sentiment_mean               -> returns         | lag=1  p=0.0941    
+  sentiment_min                -> returns         | lag=1  p=0.0180 ***
+  pct_negative                 -> returns         | lag=1  p=0.0507    
+  information_shift            -> returns         | lag=4  p=0.0052 ***
+
+Interpretation :
+  Si SIGNIFICATIF : les news ont un pouvoir predictif sur les rendements.
+  Comparer avec la section B pour detecter une eventuelle causalite inversee.
+  Si A significatif ET B non : les news precedent reellement le marche.
+  Si A et B tous les deux significatifs : relation bidirectionnelle.
+
+-----------------------------------------------------------------
+Rendements -> News  (le marche predit-il le sentiment ?)
+-----------------------------------------------------------------
+Resultats : 0/2 tests significatifs
+
+  returns                      -> sentiment_mean  | lag=2  p=0.3562    
+  returns                      -> pct_negative    | lag=1  p=0.7947    
+
+Interpretation :
+  Si SIGNIFICATIF : le marche predit le sentiment -> les journalistes
+  reagissent aux mouvements de prix plutot qu'ils ne les causent.
+  Cela ne disqualifie pas les news, mais indique une causalite partielle.
+
+-----------------------------------------------------------------
+News -> Regime      (les features textuelles predisent-elles un changement ?)
+-----------------------------------------------------------------
+Resultats : 3/4 tests significatifs
+
+  sentiment_mean               -> y               | lag=4  p=0.0000 ***
+  sentiment_min                -> y               | lag=3  p=0.0000 ***
+  pct_negative                 -> y               | lag=5  p=0.0000 ***
+  information_shift            -> y               | lag=1  p=0.4109    
+
+Interpretation :
+  Si SIGNIFICATIF : les features textuelles des j derniers jours
+  precedent statistiquement un changement de regime.
+  C'est le resultat cle pour valider l'approche du projet.
+
+-----------------------------------------------------------------
+Marche -> Regime    (baseline sans features textuelles)
+-----------------------------------------------------------------
+Resultats : 2/3 tests significatifs
+
+  returns                      -> y               | lag=1  p=0.0934    
+  volatility_20d               -> y               | lag=2  p=0.0035 ***
+  vix                          -> y               | lag=1  p=0.0358 ***
+
+Interpretation :
+  Baseline : pouvoir predictif des features de marche seules.
+  Si D significatif mais pas C : le marche se predit lui-meme,
+  les news n'apportent pas d'information supplementaire.
+  Si C significatif ET D non : les news apportent un signal unique.
+
+=================================================================
+SYNTHESE
+=================================================================
+=> Les news ET le marche predisent les changements de regime.
+   Combiner les deux types de features dans le modele ML.
+=> Causalite news -> marche : les news precedent les rendements.
+
+Prochaine etape : 09_causal_ml.py (dowhy / causalnex)
+=================================================================
