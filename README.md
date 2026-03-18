@@ -624,7 +624,7 @@ BATCH_SIZE     = 32                   # For model inference
 
 ---
 
-## 📊 Output Files
+## Output Files
 
 | File | Location | Description |
 |------|----------|-------------|
@@ -649,7 +649,7 @@ BATCH_SIZE     = 32                   # For model inference
 
 ---
 
-## 🔬 Key Methodologies
+## Key Methodologies
 
 ### 1. **Regime Detection: KMeans Clustering**
 - **Why**: Unsupervised learning captures natural market regimes without labels
@@ -683,7 +683,7 @@ BATCH_SIZE     = 32                   # For model inference
 
 ---
 
-## 📈 Results & Interpretation
+## Results & Interpretation
 
 ### Expected Outcomes
 
@@ -721,7 +721,7 @@ BATCH_SIZE     = 32                   # For model inference
 
 ---
 
-## ⚙️ Configuration & Parameters
+## Configuration & Parameters
 
 ### Global Parameters (Adjustable in each script)
 
@@ -752,7 +752,7 @@ SIGNIFICANCE_LEVEL = 0.05              # p-value threshold
 
 ---
 
-## 📋 Requirements & Dependencies
+## Requirements & Dependencies
 
 ### Core Libraries
 ```
@@ -803,7 +803,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Issue: "ModuleNotFoundError: No module named 'transformers'"
 **Solution**:
@@ -891,7 +891,7 @@ python -u 08_model.py 2>&1 | tee training.log
 
 ---
 
-## 📞 Support & Questions
+## Support & Questions
 
 For issues or questions, please:
 1. Check [Troubleshooting](#troubleshooting) section
@@ -903,7 +903,7 @@ For issues or questions, please:
 
 ---
 
-## 📝 License & Citation
+## License & Citation
 
 If you use this project, please cite:
 ```bibtex
@@ -917,7 +917,7 @@ If you use this project, please cite:
 
 ---
 
-## 🎓 Educational Resources
+## Educational Resources
 
 ### Background Reading
 - **Regime Switching Models**: Hamilton, J. D. (1989). "A new approach to the economic analysis of nonstationary time series"
