@@ -844,4 +844,4 @@ If you use this project, please cite:
 
 **Last Updated**: March 2024  
 **Version**: 1.0  
-**Maintainer**: [Your Name]
+**Maintainer**: [Allan Pariente]
