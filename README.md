@@ -33,7 +33,7 @@ This project builds an **end-to-end machine learning pipeline** that:
 4. **Performs sentiment analysis** using FinBERT to quantify news sentiment
 5. **Generates embeddings** using Sentence Transformers for semantic news representation
 6. **Analyzes causal relationships** via Granger causality testing between news sentiment and market regimes
-7. **Trains predictive models** (Random Forest, XGBoost) to forecast market regimes
+7. **Trains predictive models** (Random Forest) to forecast market regimes
 8. **Explains predictions** using SHAP values to attribute causality to specific news articles and themes
 9. **Generates attribution reports** linking regime changes to news narratives
 
