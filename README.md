@@ -95,7 +95,9 @@ Financial Regime Attribution Engine
 │
 └── STAGE 9: ATTRIBUTION & INTERPRETATION
     ├── 09_attribution.py          → SHAP local explanations + report generation
+    ├── plot_09_attribution.py     → Interactive HTML visualization linking regimes to news
     └── Output: data/processed/attribution_report.json/.txt
+    └── Output: data/processed/plot_09_attribution_graph.png/.html
 
 └── STAGE 10: REAL-TIME PREDICTION (Live Monitoring)
     ├── 10_nostradamus.py          → Live predictions on latest market/news data
@@ -267,14 +269,16 @@ python 06_merge.py            # ~1 min: Fuse data
 python 07_granger.py          # ~2 min: Causality tests
 python 08_model.py            # ~3 min: Train models + SHAP
 python 09_attribution.py      # ~2 min: Generate reports
+python plot_09_attribution.py # ~3 min: Generate interactive visualization
 ```
 
-**Total runtime**: ~30-40 minutes (first run), ~5-10 minutes (subsequent with cached data)
+**Total runtime**: ~35-45 minutes (first run), ~8-12 minutes (subsequent with cached data)
 
 ### Option 2: Run Individual Steps
 ```bash
-python src/02_regime_detect.py  # Run only regime detection
-python src/08_model.py          # Retrain model on existing data
+python src/02_regime_detect.py       # Run only regime detection
+python src/08_model.py               # Retrain model on existing data
+python src/plot_09_attribution.py   # Generate interactive visualization only
 ```
 
 ### Option 3: Real-Time Prediction (Live)
@@ -541,6 +545,61 @@ RANDOM_FOREST_N_ESTIMATORS = 100
 
 ---
 
+### **plot_09_attribution.py**
+**Purpose**: Generate interactive professional visualization linking NASDAQ market regimes to financial news
+
+**Key Functions**:
+- `extract_keywords()`: Extract key terms from news headlines for concise summaries
+- `create_professional_summary()`: Generate readable narrative from multiple news articles
+- `load_data()`: Load NASDAQ prices, regime classification, and attribution data
+- `plot_attribution_graph()`: Create matplotlib chart with 72 numbered regime change markers
+- `add_attribution_annotations()`: Place colored numbered markers on graph representing regime shifts
+- `create_html_report()`: Generate professional interactive HTML table with embedded PNG and expandable articles
+
+**Outputs**:
+- `data/processed/plot_09_attribution_graph.png` (NASDAQ chart with numbered regime change points)
+- `data/processed/plot_09_attribution_report.html` (Interactive HTML dashboard)
+
+**Key Features**:
+- Displays all 72 regime changes detected in dataset
+- Semantic separation: row background color indicates market regime (red=bear, green=bull, blue=sideways) while News Sentiment badges show sentiment (red=negative, green=positive, gray=neutral/mixed)
+- Sentiment classification thresholds: Negative (< -0.15), Positive (> +0.15), Neutral/Mixed (-0.15 to +0.15)
+- Expandable news article details for each regime transition
+- Sticky table header for easy navigation
+- Professional gradient styling with responsive layout
+
+**HTML Report Contents**:
+- Embedded PNG graph with all 72 numbered transition points
+- Summary statistics (Total Changes, Bearish/Bullish/Neutral counts)
+- Interactive table with columns:
+  - Sequence number
+  - Date of transition
+  - Regime type (BEARISH MARKET / BULLISH MARKET)
+  - Professional news summary
+  - Sentiment classification badge
+  - Expandable news article details (up to 5 articles per transition)
+- Color-coded legend explaining sentiment thresholds and regime coloring
+
+**Sentiment Distribution** (with ±0.15 thresholds):
+- Typical dataset shows: 58 BEARISH transitions, 0 BULLISH, 14 NEUTRAL
+- Lower positive sentiment (max +0.048 in dataset) reflects realistic market behavior: news during regime shifts tends to be predominantly negative
+
+**Configurable Parameters**:
+```python
+REGIME_COLORS = {
+    "bear_strong": "#8B0000",
+    "bear": "#FF6B6B",
+    "sideways": "#4169E1",
+    "bull": "#90EE90",
+    "bull_strong": "#228B22"
+}
+```
+
+**File Generation**:
+- Script runs silently, generates PNG and HTML outputs to `data/processed/`
+- No browser or display windows opened automatically
+- Suitable for scheduled batch processing
+
 ### **10_nostradamus.py** LIVE PREDICTION
 **Purpose**: Real-time regime change prediction using latest market & news data
 
@@ -644,6 +703,8 @@ BATCH_SIZE     = 32                   # For model inference
 | **model_results.csv** | `data/processed/` | Model metrics (accuracy, F1, ROC-AUC) |
 | **attribution_report.json** | `data/processed/` | Structured attribution data |
 | **attribution_report.txt** | `data/processed/` | Human-readable attribution |
+| **plot_09_attribution_graph.png** | `data/processed/` | NASDAQ chart with 72 numbered regime changes and market regimes background |
+| **plot_09_attribution_report.html** | `data/processed/` | Interactive HTML dashboard with embedded PNG + expandable news table |
 | **prediction_YYYYMMDD.json** | `data/live/` | Live prediction (structured) |
 | **prediction_YYYYMMDD.txt** | `data/live/` | Live prediction (human-readable) |
 
