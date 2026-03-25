@@ -260,19 +260,17 @@ mkdir -p data/market data/news data/processed data_usable data/models
 cd src
 
 # Run all steps in order
-python 01_market_data.py      # ~2 min: Fetch market data
-python 02_regime_detect.py    # ~1 min: Detect regimes
-python 03_news_fetch.py       # ~10-15 min: Fetch news (API calls)
-python 04_sentiment.py        # ~5 min: FinBERT analysis
-python 05_embeddings.py       # ~3 min: Generate embeddings
-python 06_merge.py            # ~1 min: Fuse data
-python 07_granger.py          # ~2 min: Causality tests
-python 08_model.py            # ~3 min: Train models + SHAP
-python 09_attribution.py      # ~2 min: Generate reports
-python plot_09_attribution.py # ~3 min: Generate interactive visualization
+python 01_market_data.py      # Fetch market data
+python 02_regime_detect.py    # Detect regimes
+python 03_news_fetch.py       # Fetch news (API calls)
+python 04_sentiment.py        # FinBERT analysis
+python 05_embeddings.py       # Generate embeddings
+python 06_merge.py            # Fuse data
+python 07_granger.py          # Causality tests
+python 08_model.py            # Train models + SHAP
+python 09_attribution.py      # Generate reports
+python plot_09_attribution.py # Generate interactive visualization
 ```
-
-**Total runtime**: ~35-45 minutes (first run), ~8-12 minutes (subsequent with cached data)
 
 ### Option 2: Run Individual Steps
 ```bash
@@ -284,7 +282,7 @@ python src/plot_09_attribution.py   # Generate interactive visualization only
 ### Option 3: Real-Time Prediction (Live)
 ```bash
 # After running full pipeline once (to train models), run for live predictions
-python src/10_nostradamus.py    # ~30s: Predict regime change on latest market/news data
+python src/10_nostradamus.py
 
 # Schedule it to run daily (e.g., via cron after market close)
 # Generates: data/live/prediction_YYYYMMDD.json and .txt
