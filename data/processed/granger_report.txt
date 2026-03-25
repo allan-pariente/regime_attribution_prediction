@@ -73,6 +73,4 @@ SYNTHESE
 => Les news ET le marche predisent les changements de regime.
    Combiner les deux types de features dans le modele ML.
 => Causalite news -> marche : les news precedent les rendements.
-
-Prochaine etape : 09_causal_ml.py (dowhy / causalnex)
 =================================================================

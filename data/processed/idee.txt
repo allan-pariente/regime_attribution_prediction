@@ -1,6 +1,0 @@
-Il faudrait faire en sorte de donner au modèle la raison du régime précédent pour qu'il puisse comprendre pourquoi le régime suivant arrive.
-Exemple covid : 
- - Crash à cause du covid et du confinement
- - Puis remontée historique à la découverte du vaccin
-
-Mais ici le modèle n'a pas considéré le vaccin comme donnée importante du problème, ça aurait été bien qu'il se rende compte que la découveerte du vaccin était radicalement opposée à la période de confinement.

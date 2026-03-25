@@ -300,9 +300,6 @@ def build_report(results: list, df: pd.DataFrame) -> str:
         lines.append("=> Causalite inversee : le marche precede les news (journalistes reactifs).")
     elif sig_a and sig_b:
         lines.append("=> Relation bidirectionnelle news <-> marche.")
-
-    lines.append("")
-    lines.append("Prochaine etape : 09_causal_ml.py (dowhy / causalnex)")
     lines.append(sep)
 
     return "\n".join(lines)
